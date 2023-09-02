@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const noteRouter = require('./routes/NoteRoutes.js')
 const bodyParser = require('body-parser')
 const express = require("express");
 const app = express();
@@ -27,7 +26,14 @@ app.get('/user', (req, res) => {
   })
 })
 
-app.use('/notes', noteRouter)
+app.post('/hello', (req, res) => {
+  res.send({
+    name: "kevalthumar",
+    age: "19"
+  })
+})
+
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
