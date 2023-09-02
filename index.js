@@ -1,6 +1,11 @@
 import express from "express";
-
+import mongoose from "mongoose";
+import bodyParser from "body-parser";
 const app = express();
+
+
+
+app.use(bodyParser.urlencoded({ extended: false }))
 const port = 9000;
 app.get("/", (req, res) => {
   res.send(`<h1>Hello World</h1>`);
