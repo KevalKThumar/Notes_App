@@ -26,7 +26,7 @@ app.get('/user', (req, res) => {
   })
 })
 
-app.post('/hello', (req, res) => {
+app.get('/hello', (req, res) => {
   res.send({
     name: "kevalthumar",
     age: "19"
