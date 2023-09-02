@@ -26,4 +26,4 @@ const notesSchema = mongoose.Schema({
 
 const Note = mongoose.model('notes', notesSchema)
 
-export default Note
+module.exports = Note

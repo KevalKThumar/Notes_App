@@ -1,6 +1,7 @@
 
-const express = require("express");
 
+const express = require("express");
+const Note = require('../models/NoteModel')
 
 const router = express.Router()
 
