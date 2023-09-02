@@ -32,11 +32,11 @@ router.post('/add', async function (req, res) {
             id: req.body.id,
             userid: req.body.userid,
             title: req.body.title,
-            content: req.body.connect
+            content: req.body.content
         });
         await newNote.save();
 
-        const response = { message: `New Note Created with userid: ${req.body.userid}` };
+        const response = { message: `New Note Created with userid: ${req.body.userid} and content is ${req.body.content}` };
         res.json(response);
     } catch (error) {
         res.status(401).send({
@@ -48,7 +48,7 @@ router.post('/add', async function (req, res) {
 
 router.post('/delete', async function (req, res) {
     await Note.deleteOne({ id: req.body.id })
-    const response = { message: `Note deleted`, note: NoteData };
+    const response = { message: `Note deleted` };
     res.json(response);
 })
 
