@@ -1,14 +1,14 @@
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
-require('dotenv').config()
-app.use(cors());
-const bodtparser = require('body-parser')
+// const mongoose = require("mongoose");
+// require('dotenv').config()
+// app.use(cors());
+// const bodtparser = require('body-parser')
 
-app.use(bodtparser.urlencoded({ extended: false }))
+// app.use(bodtparser.urlencoded({ extended: false }))
 
 
-// const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 // const MOGODB_url =
 //     "mongodb+srv://keval:keval@flutternotes.nkafc0p.mongodb.net/?retryWrites=true&w=majority";
 
