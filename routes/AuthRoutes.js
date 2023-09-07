@@ -11,7 +11,7 @@ router.post("/login", loginController);
 // for token validation
 router.post('/tokenIsValid', tokenIsValid);
 // for get user:
-router.get('/getuserj', auth, getuser);
+router.get('/getuser', auth, getuser);
 
 
 module.exports = router;
