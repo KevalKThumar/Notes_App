@@ -85,13 +85,10 @@ const loginController = async (req, res) => {
 
         const token = JWT.sign({ _id: user._id }, "13QEWDSFGrty345*&yFs!@tgji*&GFD67^hgGFFFH", { expiresIn: "14d" });
 
-        res.status(200).send({
+        res.status(200).json({
             success: true,
             message: "Login successfully",
-            user: {
-                name: user.name,
-                email: user.email,
-            },
+            ...user,
             token,
         });
 
