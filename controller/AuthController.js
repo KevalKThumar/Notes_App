@@ -1,7 +1,7 @@
 
 const userModel = require('../models/AuthModel')
 const { comparePassword, hashPassword } = require('../helper/authHelper')
-const JWT = require('jsonwebtoken')
+const JWT = require('jsonwebtoken');
 const registerController = async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -83,7 +83,7 @@ const loginController = async (req, res) => {
 
         }
 
-        const token = JWT.sign({ _id: user._id }, "13QEWDSFGrty345*&yFs!@tgji*&GFD67^hgGFFFH ", { expiresIn: "14d" });
+        const token = JWT.sign({ _id: user._id }, "13QEWDSFGrty345*&yFs!@tgji*&GFD67^hgGFFFH", { expiresIn: "14d" });
 
         res.status(200).send({
             success: true,
@@ -107,8 +107,29 @@ const loginController = async (req, res) => {
 
 }
 
+const tokenIsValid = async (req, res) => {
+    try {
+        const token = req.header("x-auth-token");
+        if (!token) return res.json(false);
+        const verified = JWT.verify(token, "13QEWDSFGrty345*&yFs!@tgji*&GFD67^hgGFFFH");
+        if (!verified) return res.json(false);
+
+        const user = await userModel.findById(verified.id);
+        if (!user) return res.json(false);
+        res.json(true);
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+}
+
+const getuser = async (req, res) => {
+    const user = await userModel.findById(req.user);
+    res.json({ ...user._doc, token: req.token });
+}
 
 module.exports = {
     loginController,
-    registerController
+    registerController,
+    tokenIsValid,
+    getuser
 }
