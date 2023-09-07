@@ -123,7 +123,11 @@ const tokenIsValid = async (req, res) => {
         });
 
         const user = await userModel.findById(verified.id);
-        if (!user) return res.json(false);
+        if (!user) return res.status(500).send({
+            success: false,
+            message: "user Not Found"
+
+        });
         res.json(true);
     } catch (e) {
         res.status(500).json({ error: e.message });
