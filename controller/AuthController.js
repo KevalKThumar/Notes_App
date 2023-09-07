@@ -106,25 +106,12 @@ const loginController = async (req, res) => {
 const tokenIsValid = async (req, res) => {
     try {
         const token = req.header("x-auth-token");
-        if (!token) return res.status(500).send({
-            success: false,
-            message: "token not found!"
-
-        });
+        if (!token) return res.send(false);
         const verified = JWT.verify(token, "13QEWDSFGrty345*&yFs!@tgji*&GFD67^hgGFFFH");
-        if (!verified) return res.status(500).send({
-            success: false,
-            message: "token not varified"
-
-        });
+        if (!verified) return res.send(false);
 
         const user = await userModel.findById(verified.id);
-        if (!user) return res.status(500).send({
-            success: false,
-            message: "user Not Found",
-            varification_id: verified.id
-
-        });
+        if (!user) return res.send(false);
         res.json(true);
     } catch (e) {
         res.status(500).json({ error: e.message });
