@@ -3,6 +3,8 @@ const noteRouter = require('./routes/NoteRoutes.js')
 const bodyParser = require('body-parser')
 const express = require("express");
 const app = express();
+const cors = require('cors')
+
 const Db = require('./config/Db')
 const authRouter = require('./routes/AuthRoutes.js')
 
@@ -20,9 +22,10 @@ Db();
 app.get("/", (req, res) => {
   res.send(`<h1>Hello World</h1>`);
 });
-
+app.use(cors());
 app.use('/notes', noteRouter)
 app.use('/auth', authRouter)
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);

@@ -104,15 +104,22 @@ const loginController = async (req, res) => {
 }
 
 const tokenIsValid = async (req, res) => {
-    try {
-        const token = req.header("x-auth-token");
-        if (!token) return res.send(false);
-        const verified = JWT.verify(token, "13QEWDSFGrty345*&yFs!@tgji*&GFD67^hgGFFFH");
-        if (!verified) return res.send(false);
 
-        const user = await userModel.findById(verified.id);
+    try {
+
+        const token = req.header("x-auth-token");
+
+        if (!token) return res.send(false);
+
+        const verified = JWT.verify(token, "13QEWDSFGrty345*&yFs!@tgji*&GFD67^hgGFFFH");
+
+        if (!verified) return res.send(false);
+        // console.log(verified._id)
+        const user = await userModel.findById(verified._id);
+
         if (!user) return res.send(false);
         res.json(true);
+
     } catch (e) {
         res.status(500).json({ error: e.message });
     }

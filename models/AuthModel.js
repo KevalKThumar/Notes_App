@@ -11,6 +11,13 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
             unique: true,
+            validate: {
+                validator: (value) => {
+                    const re =
+                        /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+                },
+                message: "Please enter a valid email address",
+            }
         },
         password: {
             type: String,
