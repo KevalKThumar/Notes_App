@@ -18,11 +18,11 @@ const PORT = process.env.PORT || 5000;
 
 Db();
 
-
+app.use(cors());
+app.use(express.json());
 app.get("/", (req, res) => {
   res.send(`<h1>Hello World</h1>`);
 });
-app.use(cors());
 app.use('/notes', noteRouter)
 app.use('/auth', authRouter)
 
