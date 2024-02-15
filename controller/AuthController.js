@@ -1,7 +1,7 @@
 
 const userModel = require('../models/AuthModel')
 const { comparePassword, hashPassword } = require('../helper/authHelper')
-const JWT = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const registerController = async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -83,7 +83,7 @@ const loginController = async (req, res) => {
 
         }
 
-        const token = JWT.sign({ _id: user._id }, "13QEWDSFGrty345*&yFs!@tgji*&GFD67^hgGFFFH", { expiresIn: "14d" });
+        const token = jwt.sign({ _id: user._id }, "13QEWDSFGrty345*&yFs!@tgji*&GFD67^hgGFFFH", { expiresIn: "14d" });
 
         res.status(200).json({
             ...user._doc,
@@ -111,7 +111,7 @@ const tokenIsValid = async (req, res) => {
 
         if (!token) return res.send(false);
 
-        const verified = JWT.verify(token, "13QEWDSFGrty345*&yFs!@tgji*&GFD67^hgGFFFH");
+        const verified = jwt.verify(token, "13QEWDSFGrty345*&yFs!@tgji*&GFD67^hgGFFFH");
 
         if (!verified) return res.send(false);
         // console.log(verified._id)

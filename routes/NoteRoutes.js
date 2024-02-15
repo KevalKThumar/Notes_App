@@ -5,7 +5,7 @@ const router = express.Router()
 
 
 
-router.post("/list", listOfNote);
+router.get("/list", listOfNote);
 
 router.post('/add', addNote)
 
