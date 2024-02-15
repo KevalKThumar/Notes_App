@@ -1,5 +1,5 @@
 
-const Note = require('../models/NoteModel')
+import Note from '../models/NoteModel.js';
 
 const deleteNote = async function (req, res) {
     await Note.deleteOne({ id: req.body.id })
@@ -44,7 +44,7 @@ const listOfNote = async (req, res) => {
     }
 }
 
-module.exports = {
+export {
     deleteNote,
     addNote,
     listOfNote

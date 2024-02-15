@@ -1,7 +1,8 @@
 
-const express = require("express");
-const { deleteNote, addNote, listOfNote } = require('../controller/NoteController')
-const router = express.Router()
+import express from "express";
+import { deleteNote, addNote, listOfNote } from '../controller/NoteController.js';
+
+const router = express.Router();
 
 
 
@@ -11,4 +12,4 @@ router.post('/add', addNote)
 
 router.post('/delete', deleteNote)
 
-module.exports = router
+export default { router }

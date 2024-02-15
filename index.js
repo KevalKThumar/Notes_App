@@ -1,12 +1,12 @@
-const mongoose = require("mongoose");
-const noteRouter = require('./routes/NoteRoutes.js')
-const bodyParser = require('body-parser')
-const express = require("express");
-const app = express();
-const cors = require('cors')
 
-const Db = require('./config/Db')
-const authRouter = require('./routes/AuthRoutes.js')
+import router from './routes/NoteRoutes.js';
+import bodyParser from 'body-parser';
+import express from "express";
+import cors from 'cors';
+import Db from './config/Db.js';
+
+const app = express();
+
 
 
 
@@ -23,8 +23,6 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send(`<h1>Hello World</h1>`);
 });
-app.use('/notes', noteRouter)
-app.use('/auth', authRouter)
 
 
 app.listen(PORT, () => {
