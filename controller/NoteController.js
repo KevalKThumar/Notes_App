@@ -44,7 +44,7 @@ const listOfNote = async (req, res) => {
     }
 }
 
-export {
+export  {
     deleteNote,
     addNote,
     listOfNote

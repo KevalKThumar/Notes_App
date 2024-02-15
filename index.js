@@ -1,9 +1,13 @@
 
-import router from './routes/NoteRoutes.js';
 import bodyParser from 'body-parser';
 import express from "express";
 import cors from 'cors';
 import Db from './config/Db.js';
+import {
+  deleteNote,
+  addNote,
+  listOfNote
+} from './controller/NoteController.js';
 
 const app = express();
 
@@ -23,6 +27,10 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send(`<h1>Hello World</h1>`);
 });
+
+app.get('/list', listOfNote);
+app.post('/add', addNote);
+app.delete('/delete', deleteNote);
 
 
 app.listen(PORT, () => {
