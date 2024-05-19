@@ -35,7 +35,7 @@ const addNote = async function (req, res) {
 
 const listOfNote = async (req, res) => {
     try {
-        let notes = await Note.find({ userid: req.body.userid });
+        let notes = await Note.find();
         res.json(notes);
     } catch (error) {
         res.status(404).send({
